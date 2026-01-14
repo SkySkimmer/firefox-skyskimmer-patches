@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# configure and triggered are from debian, manual is for invoking from command line.
+# Other possible values from debian are abort-* variations.
+case $1 in
+    configure|triggered|manual) ;;
+    *)
+        exit 0
+        ;;
+esac
+
+set -e
+
+tmp=$(mktemp -d)
+cd "$tmp"
+
+omni=/usr/lib/firefox/omni.ja
+browser_omni=/usr/lib/firefox/browser/omni.ja
+
+unzip -d "omni" -q $omni >/dev/null 2>&1 \
+  || true # for some reason omni.ja can produce unzip error (but unzip still produces files)
+unzip -d "browser_omni" -q $browser_omni >/dev/null 2>&1 \
+  || true
+
+# paths for firefox versions ??-??, ??-146, 147-??
+for jsfile in \
+  browser_omni/modules/UrlbarInput.sys.mjs \
+  omni/moz-src/browser/components/urlbar/UrlbarInput.sys.mjs \
+  browser_omni/chrome/browser/content/browser/urlbar/UrlbarInput.mjs \
+  ""; do
+  if [ "$jsfile" = "" ]; then
+    >&2 echo Unzip failed somehow
+    exit 1
+  elif [ -f "$jsfile" ]; then
+    break;
+  fi
+done
+
+jakind=${jsfile%%/*}
+
+# pattern hasn't changed so far
+sed -i 's/this\._preventClickSelectsAll = this\.focused;/this._preventClickSelectsAll = true;/' "$jsfile"
+
+cd "$jakind"
+zip -0DXqr omni.ja ./*
+
+case "$jakind" in
+  omni)
+    target=$omni
+    ;;
+  browser_omni)
+    target=$browser_omni
+    ;;
+  *)
+    >&2 echo Unknown jakind "$jakind"
+    exit 1
+    ;;
+esac
+
+mv omni.ja "$target"
+date > "$target.patched"
+md5sum "$target" >> "$target.patched"

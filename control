@@ -1,0 +1,10 @@
+Package: firefox-skyskimmer-patches
+Version: 3
+Section: custom
+Priority: optional
+Architecture: all
+Essential: no
+Maintainer: skyskimmer.net
+Depends: zip, unzip, sed, coreutils
+Description: Patch firefox post-install
+  - disable clickselectsall behaviour in adress bar
