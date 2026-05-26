@@ -38,8 +38,8 @@ done
 
 jakind=${jsfile%%/*}
 
-# pattern hasn't changed so far
-sed -i 's/this\._preventClickSelectsAll = this\.focused;/this._preventClickSelectsAll = true;/' "$jsfile"
+# < 151: _ prefix, after: # prefix
+sed -i 's/\(this\.[_#]preventClickSelectsAll = \)this\.focused;/\1true;/' "$jsfile"
 
 cd "$jakind"
 zip -0DXqr omni.ja ./*

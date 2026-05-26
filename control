@@ -1,5 +1,5 @@
 Package: firefox-skyskimmer-patches
-Version: 3
+Version: 4
 Section: custom
 Priority: optional
 Architecture: all
