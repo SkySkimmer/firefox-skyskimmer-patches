@@ -8,3 +8,5 @@ and https://github.com/SebastianSimon/firefox-omni-tweaks
 To get a `.deb` run `./build.sh`.
 
 Can also be run directly as `./postinst manual`.
+
+May need to `rm -r ~/.cache/mozilla/firefox/` if you ran the unpatched firefox.
