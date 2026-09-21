@@ -22,7 +22,7 @@ unzip -d "omni" -q $omni >/dev/null 2>&1 \
 unzip -d "browser_omni" -q $browser_omni >/dev/null 2>&1 \
   || true
 
-# paths for firefox versions ??-??, ??-146, 147-150, 151-??
+# paths for firefox versions ??-??, ??-146, 147-155, 156-??
 for jsfile in \
   browser_omni/modules/UrlbarInput.sys.mjs \
   omni/moz-src/browser/components/urlbar/UrlbarInput.sys.mjs \
