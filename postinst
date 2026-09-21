@@ -22,16 +22,17 @@ unzip -d "omni" -q $omni >/dev/null 2>&1 \
 unzip -d "browser_omni" -q $browser_omni >/dev/null 2>&1 \
   || true
 
-# paths for firefox versions ??-??, ??-146, 147-??
+# paths for firefox versions ??-??, ??-146, 147-150, 151-??
 for jsfile in \
   browser_omni/modules/UrlbarInput.sys.mjs \
   omni/moz-src/browser/components/urlbar/UrlbarInput.sys.mjs \
   browser_omni/chrome/browser/content/browser/urlbar/UrlbarInput.mjs \
+  browser_omni/chrome/browser/content/browser/urlbar/UrlbarInputBase.mjs \
   ""; do
   if [ "$jsfile" = "" ]; then
     >&2 echo Unzip failed somehow
     exit 1
-  elif [ -f "$jsfile" ]; then
+  elif [ -f "$jsfile" ] && grep -q preventClickSelectsAll "$jsfile"; then
     break;
   fi
 done
