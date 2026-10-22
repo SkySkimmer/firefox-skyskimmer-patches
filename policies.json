@@ -23,9 +23,15 @@
       "SponsoredTopSites": false,
       "Highlights": false,
       "Pocket": false,
-      "SponsoredPocket": false,
-      "Snippets": false
+      "SponsoredStories": false,
+      "Widgets": { "Enabled": false }
     },
+    "DisableProfileImport" : true,
+    "DisableProfileRefresh" : true,
+    "FirefoxSuggest" : { "SponsoredSuggestions" : false, "OnlineEnabled" : false },
+    "PromptForDownloadLocation" : true,
+    "SearchSuggestEnabled" : false,
+    "SkipTermsOfUse": true,
     "Preferences": {
       "browser.translations.automaticallyPopup": false
     }
