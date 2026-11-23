@@ -29,7 +29,6 @@
     "DisableProfileImport" : true,
     "DisableProfileRefresh" : true,
     "FirefoxSuggest" : { "SponsoredSuggestions" : false, "OnlineEnabled" : false },
-    "PromptForDownloadLocation" : true,
     "SearchSuggestEnabled" : false,
     "SkipTermsOfUse": true,
     "Preferences": {
